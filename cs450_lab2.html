@@ -199,8 +199,8 @@
   
               </p>
   
-              <p>a) Change the exit system call signature to void exit(int
-                status). The exit system call must act as previously defined (i.e.,
+              <p><b>a) Change the exit system call signature to void exit(int
+                status).</b> The exit system call must act as previously defined (i.e.,
                 terminate the current process) but it must also store the exit status
                 of the terminated process in the corresponding structure.  In order to
                 make the changes in exit system call you must update the following
@@ -229,8 +229,8 @@
                 next part of the Lab.
   
               </p>
-              <p>b) Update the wait system call signature to int wait(int
-                *status). The wait system call must prevent the current process from
+              <p><b>b) Update the wait system call signature to int wait(int
+                *status).</b> The wait system call must prevent the current process from
                 execution until any of its child processes is terminated (if any
                 exists) and return the terminated child exit status through the status
                 argument.  The system call must return the process id of the child
@@ -243,8 +243,8 @@
                 system call arguments, in this case with how to return a value.
   
               </p>
-              <p>c) Add a waitpid system call: int waitpid(int pid, int *status, int
-                options).  This system call must act like wait system call with the
+              <p><b>c) Add a waitpid system call: int waitpid(int pid, int *status, int
+                options).</b>  This system call must act like wait system call with the
                 following additional properties: The system call must wait for a
                 process (not necessary a child process) with a pid that equals to one
                 provided by the pid argument.  The return value must be the process id
@@ -257,7 +257,7 @@
   
               </p>
               <p>
-                d) Write an example program to illustrate that your waitpid works.  You
+                <b>d) Write an example program to illustrate that your waitpid works.</b>  You
                 have to modify the makefile to add your example program so that it can
                 be executed from inside the shell once xv6 boots.
   
