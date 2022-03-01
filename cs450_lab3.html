@@ -91,6 +91,8 @@
             The deliverables for the assignment are the code that includes the required changes (the new system call, and modifications to exit), as well as the user test program(s). <br>
             You will be graded by reports. Randomly seletected students (~10%) are expected to demonstrate that you understand what you did and why you did it that way.
           <br><br>
+
+          
           <h3>2. Getting started</h3>
             <p>
             Based on Lab 1 to set up xv6 on your own machine. <br>
@@ -122,19 +124,16 @@
               <p><b>b) Implement aging of priority.</b> 
                 To avoid starvation, you need to implement aging of priority. 
                 If a process waits increase its priority (decrease its value). When it runs, decrease it (increase its value).
-  
               </p>
-              <p>Goal of this part of the assignment: Continue to get familiar with
-                system call arguments, in this case with how to return a value.
-  
-              </p>
+
+
               <p><b>c) Track the scheduling performance of each process.</b>  
                 You also need to add fields to track the scheduling performance of each process. 
                 These values should allow you to compute the turnaround time and wait time for each process. 
                 Add a system call to extract these values or alternatively print them out when the process exits.
-  
-  
               </p>
+
+
               <p>
                 <b>d) Write an test program to illustrate that your priority scheduling works.</b>  You
                 have to modify the makefile to add your example program so that it can
