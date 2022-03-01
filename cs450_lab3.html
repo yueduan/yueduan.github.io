@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Yue Duan's Homepage</title>
+
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom fonts for this template -->
+<link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
+<link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/resume.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+	<a class="navbar-brand js-scroll-trigger" href="#page-top">
+	  <span class="d-block d-lg-none">Yue Duan' Homepage</span>
+	  <span class="d-none d-lg-block">
+		<img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/yue_duan.jpeg" alt="Yue Duan">
+	  </span>
+	</a>
+	
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav">
+		<li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="index.html">Home</a>
+		</li>
+    <li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="lab.html">Lab Members</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="pub.html">Publication</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="services.html">Professional Services</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="teaching.html">Teaching</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="honors.html">Selected Honors</a>
+		</li>
+		</ul>
+	</div>
+</nav>
+
+<div class="container-fluid p-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
+
+  
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+          <h2>Lab 3: Process Management
+          </h2>
+  
+          <p>
+            <b>Handed out Tuesday Mar 1 2022<br>
+              Due Friday Apr 1 2022
+            </b>
+          </p>
+          
+          <br><br>
+          <h3>1. Introduction
+          </h3>
+          
+            In this part of the assignment, you will change the scheduler from a simple round-robin to a priority scheduler. Add a priority value to each process (lets say taking a range between 0 to 31). The range does not matter, it is just a proof of concept. When scheduling from the ready list you will always schedule the highest priority thread/process first (the one with the lowest value). All the processes should have a default initial priority of 10.
+  
+            The deliverables for the assignment are the code that includes the required changes (the new system call, and modifications to exit), as well as the user test program(s). <br>
+            You will be graded by reports. Randomly seletected students (~10%) are expected to demonstrate that you understand what you did and why you did it that way.
+          <br><br>
+          <h3>2. Getting started</h3>
+            <p>
+            Based on Lab 1 to set up xv6 on your own machine. <br>
+
+            </p>
+            <p>To get started, look at the file <code class="docutils literal notranslate"><span class="pre">proc.c</span></code>.</p>
+            <br><br>
+              
+              
+              <h3>3. Assignment</h3>
+  
+              <p>Extend the current xv6 process implementation to maintain
+                an exit status.  To get this done, add a field to the process
+                structure (see proc.h) in order to save an exit status of the
+                terminated process.  We will need this for implementing wait.  Next, you
+                have to change all system calls affected by this change (e.g., exit,
+                wait etc.).
+  
+  
+  
+              </p>
+  
+              <p><b>a) Add a system call to change the priority of a process.</b>  
+                A process can change its priority at any time. 
+                If the priority becomes lower than any process on the ready list, you must switch to that process.
+  
+              </p>
+
+              <p><b>b) Implement aging of priority.</b> 
+                To avoid starvation, you need to implement aging of priority. 
+                If a process waits increase its priority (decrease its value). When it runs, decrease it (increase its value).
+  
+              </p>
+              <p>Goal of this part of the assignment: Continue to get familiar with
+                system call arguments, in this case with how to return a value.
+  
+              </p>
+              <p><b>c) Track the scheduling performance of each process.</b>  
+                You also need to add fields to track the scheduling performance of each process. 
+                These values should allow you to compute the turnaround time and wait time for each process. 
+                Add a system call to extract these values or alternatively print them out when the process exits.
+  
+  
+              </p>
+              <p>
+                <b>d) Write an test program to illustrate that your priority scheduling works.</b>  You
+                have to modify the makefile to add your example program so that it can
+                be executed from inside the shell once xv6 boots.
+  
+              </p>
+              <br><br>
+              
+              <h3>4. What to submit</h3>
+              You need to submit a report that includes the folowing:
+              <ul>
+                <li>All code changes you made on xv6 source code (hint: <kbd>diff -r original_xv6 your_xv6</kbd>)
+                </li>
+                <li>Detailed explanation about these changes
+                </li>
+                <li>Screenshots about how you run the related program(s) and results
+                </li>
+              </ul>
+  
+                  </div>
+                </div>
+              </div>
+    </section>
+  
+  
+  
+  </div>
+
+
+
+
+
+
+
+
+<!-- Bootstrap core JavaScript -->
+<!-- <script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="js/resume.min.js"></script>
+
+</body>
+
+</html>
