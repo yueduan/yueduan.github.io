@@ -88,7 +88,7 @@
           
             In this part of the assignment, you will change the scheduler from a simple round-robin to a priority scheduler. Add a priority value to each process (lets say taking a range between 0 to 31). The range does not matter, it is just a proof of concept. When scheduling from the ready list you will always schedule the highest priority thread/process first (the one with the lowest value). All the processes should have a default initial priority of 10.
   
-            The deliverables for the assignment are the code that includes the required changes (the new system call, and modifications to exit), as well as the user test program(s). <br>
+            The deliverables for the assignment are the code that includes the required changes, as well as the user test program(s). <br>
             You will be graded by reports. Randomly seletected students (~10%) are expected to demonstrate that you understand what you did and why you did it that way.
           <br><br>
 
@@ -104,16 +104,6 @@
               
               <h3>3. Assignment</h3>
   
-              <p>Extend the current xv6 process implementation to maintain
-                an exit status.  To get this done, add a field to the process
-                structure (see proc.h) in order to save an exit status of the
-                terminated process.  We will need this for implementing wait.  Next, you
-                have to change all system calls affected by this change (e.g., exit,
-                wait etc.).
-  
-  
-  
-              </p>
   
               <p><b>a) Add a system call to change the priority of a process.</b>  
                 A process can change its priority at any time. 
