@@ -83,8 +83,8 @@
           </p>
           
           <br><br>
-          <h4>1. Objective
-          </h4>
+          <h3>1. Objective
+          </h3>
           
           Modify memory layout to move stack to the top of address space (70%)
           <br>
@@ -94,18 +94,18 @@
           <br><br>
 
           <section id="part-1-changing-memory-layout">
-            <h3>Part 1: Changing memory layout</h3>
+            <h4>Part 1: Changing memory layout</h4>
 
             <br>
             <section id="overview">
-            <h2>Overview</h2>
+            <h5>Overview</h5>
             <p>In this part, you’ll be making changes to the xv6 memory layout.
             Sound simple? Well, there are a few tricky details.</p>
             </section>
 
             <br>
             <section id="details">
-            <h2>Details</h2>
+            <h5>Details</h5>
             <p>In xv6, the VM system uses a simple two-level page table.
             If you do not remember the details, read <a class="reference external" href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-smalltables.pdf">Section 20.3</a>
             of OS 3 easy steps. However, you may find the description in
@@ -162,7 +162,7 @@
 
           <br>
           <section id="part-2-growing-the-stack">
-            <h3>Part 2: Growing the Stack</h3>
+            <h4>Part 2: Growing the Stack</h4>
             <p>The final item, which is challenging: automatically growing the
             stack backwards when needed.  Getting this to work will make you into
             a kernel boss, and also get you those last 10% of credit.  Briefly,
@@ -186,7 +186,7 @@
           <br><br>
 
           <section id="hints">
-            <h4>2. Hints</h4>
+            <h3>2. Hints</h3>
             <p><strong>IMPORTANT</strong> Check the <a class="reference internal" href="#survive-guide"><span class="std std-ref">Survival guide</span></a> to walk you through this assignment.</p>
             <p><strong>Particularly useful for this project:</strong>
             Chapter 1 of xv6 + anything else about <code class="docutils literal notranslate"><span class="pre">fork()</span></code> and <code class="docutils literal notranslate"><span class="pre">exec()</span></code>,
@@ -212,7 +212,7 @@
 
           <br><br>
           <section id="survival-guide">
-            <span id="survive-guide"></span><h4>3. Survival guide</h4>
+            <span id="survive-guide"></span><h3>3. Survival guide</h3>
             <p>From assignment:</p>
             <p>Right now, the program memory map is determined by how we load the
             program into memory and set up the page table (so that they are
@@ -226,7 +226,7 @@
 
             <br>
             <section id="part-1">
-              <h3>Part 1</h3>
+              <h4>Part 1</h4>
               <p>Opens the executable file and parses it.  The rest of this
               paragraph is FYI.  Typically executable files are made up of a header
               including information that allows us to index the rest of the file.
@@ -240,7 +240,7 @@
 
             <br>
             <section id="part-2">
-              <h3>Part 2</h3>
+              <h4>Part 2</h4>
               <p>Initializes the kernel memory using <code class="docutils literal notranslate"><span class="pre">setupkvm()</span></code> which maps the
               pages of the kernel to the process address space.  We dont really need
               to know what happens in here.</p>
@@ -248,7 +248,7 @@
 
             <br>
             <section id="part-3">
-              <h3>Part 3</h3>
+              <h4>Part 3</h4>
               <p>It then moves on to load the sections of the executable file
               into memory using <code class="docutils literal notranslate"><span class="pre">loaduvm()</span></code> which creates the memory pages for each
               section and maps them to the address space (by initializing the page
@@ -278,7 +278,7 @@
 
             <br>
             <section id="part-4">
-              <h3>Part 4</h3>
+              <h4>Part 4</h4>
               <p>At this point, we loaded code and data sections, and its time
               to create the stack.  xv6 does not support a heap at the moment (there
               is no <code class="docutils literal notranslate"><span class="pre">malloc()/free()</span></code> available to user programs if you noticed).
@@ -330,7 +330,7 @@
 
             <br>
             <section id="part-5">
-              <h3>Part 5</h3>
+              <h4>Part 5</h4>
               <p>Finally, we initialize the stack pointer, currently to <code class="docutils literal notranslate"><span class="pre">sz</span></code>.</p>
               <p>TODO 2: you will have to change this to the address of the top word in
               the stack page.  Note that <code class="docutils literal notranslate"><span class="pre">KERNBASE</span></code> is the first word in the kernel
@@ -342,7 +342,7 @@
 
             <br>
             <section id="loose-ends-other-changes">
-              <h3>Loose Ends/Other changes</h3>
+              <h4>Loose Ends/Other changes</h4>
               <p>Now that we moved the stack, a few places in the Kernel that hard
               coded the previous location of the stack have to be changed.  These
               include:</p>
@@ -394,7 +394,7 @@
 
             <br>
             <section id="growing-the-stack">
-              <h3>Growing the stack</h3>
+              <h4>Growing the stack</h4>
               <p>Now that our stack has been moved, we have room to grow it.  When the
               a program causes the stack to grow to an offset bigger than one page,
               at this point, we will be accessing a page that is not
