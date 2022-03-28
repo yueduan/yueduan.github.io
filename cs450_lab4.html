@@ -83,25 +83,25 @@
           </p>
           
           <br><br>
-          <h3>1. Objective
-          </h3>
+          <h4>1. Objective
+          </h4>
           
           Modify memory layout to move stack to the top of address space (70%)
           <br>
           Implement stack growth (30%)
           <br>
-          <b>Preliminaries: You can get the starter code from the </b>
+          <b>Preliminaries: You can get the starter code from this <a href="https://github.com/naelag/lab2-f17/">code repository</a>.</b>
           <br><br>
 
           <section id="part-1-changing-memory-layout">
             <h3>Part 1: Changing memory layout<a class="headerlink" href="#part-1-changing-memory-layout" title="Permalink to this headline">¶</a></h3>
             <section id="overview">
-            <h3>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h3>
+            <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
             <p>In this part, you’ll be making changes to the xv6 memory layout.
             Sound simple? Well, there are a few tricky details.</p>
             </section>
             <section id="details">
-            <h3>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h3>
+            <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
             <p>In xv6, the VM system uses a simple two-level page table.
             If you do not remember the details, read <a class="reference external" href="http://pages.cs.wisc.edu/~remzi/OSTEP/vm-smalltables.pdf">Section 20.3</a>
             of OS 3 easy steps. However, you may find the description in
@@ -152,8 +152,12 @@
             to now work with your new accounting.  Note that this potentially
             includes the shared memory code that you are writing for part 2.</p>
             </section>
-            </section>
-            <section id="part-2-growing-the-stack">
+            
+          </section>
+
+
+            
+          <section id="part-2-growing-the-stack">
             <h3>Part 2: Growing the Stack<a class="headerlink" href="#part-2-growing-the-stack" title="Permalink to this headline">¶</a></h3>
             <p>The final item, which is challenging: automatically growing the
             stack backwards when needed.  Getting this to work will make you into
@@ -174,9 +178,11 @@
             <p>Bonus (5%): Write code to try and get the stack to grow into the
             heap.  Were you able to?  If not explain why in detail showing the
             relevant code.</p>
-            </section>
-            <section id="hints">
-            <h3>3. Hints<a class="headerlink" href="#hints" title="Permalink to this headline">¶</a></h3>
+          </section>
+          <br><br>
+
+          <section id="hints">
+            <h4>2. Hints<a class="headerlink" href="#hints" title="Permalink to this headline">¶</a></h4>
             <p><strong>IMPORTANT</strong> Check the <a class="reference internal" href="#survive-guide"><span class="std std-ref">Survival guide</span></a> to walk you through this assignment.</p>
             <p><strong>Particularly useful for this project:</strong>
             Chapter 1 of xv6 + anything else about <code class="docutils literal notranslate"><span class="pre">fork()</span></code> and <code class="docutils literal notranslate"><span class="pre">exec()</span></code>,
@@ -198,9 +204,10 @@
             if its valid, and how would you use it to find the physical address.</p></li>
             <li><p>Find where in the code we can figure out the location of the stack.</p></li>
             </ul>
-            </section>
-            <section id="survival-guide">
-            <span id="survive-guide"></span><h3>4. Survival guide<a class="headerlink" href="#survival-guide" title="Permalink to this headline">¶</a></h3>
+          </section>
+
+          <section id="survival-guide">
+            <span id="survive-guide"></span><h4>3. Survival guide<a class="headerlink" href="#survival-guide" title="Permalink to this headline">¶</a></h4>
             <p>From assignment:</p>
             <p>Right now, the program memory map is determined by how we load the
             program into memory and set up the page table (so that they are
@@ -212,186 +219,194 @@
             <p>Specifically, lets start by opening up <code class="docutils literal notranslate"><span class="pre">exec.c</span></code> check the <code class="docutils literal notranslate"><span class="pre">exec(...)</span></code>
             function which implements the system call.  Exec does the following:</p>
             <section id="part-1">
-            <h3>Part 1.<a class="headerlink" href="#part-1" title="Permalink to this headline">¶</a></h3>
-            <p>Opens the executable file and parses it.  The rest of this
-            paragraph is FYI.  Typically executable files are made up of a header
-            including information that allows us to index the rest of the file.
-            The file after that consists of sections including the code, the
-            global data, and sometimes other sections like uninitialized data.
-            These are the parts of the memory that we need to initialize from the
-            executable.  The header information includes the number of sections,
-            the start of each section in the file, and where it maps to in virtual
-            memory, and the length of each section.</p>
+              <h3>Part 1<a class="headerlink" href="#part-1" title="Permalink to this headline">¶</a></h3>
+              <p>Opens the executable file and parses it.  The rest of this
+              paragraph is FYI.  Typically executable files are made up of a header
+              including information that allows us to index the rest of the file.
+              The file after that consists of sections including the code, the
+              global data, and sometimes other sections like uninitialized data.
+              These are the parts of the memory that we need to initialize from the
+              executable.  The header information includes the number of sections,
+              the start of each section in the file, and where it maps to in virtual
+              memory, and the length of each section.</p>
             </section>
             <section id="part-2">
-            <h3>Part 2.<a class="headerlink" href="#part-2" title="Permalink to this headline">¶</a></h3>
-            <p>Initializes the kernel memory using <code class="docutils literal notranslate"><span class="pre">setupkvm()</span></code> which maps the
-            pages of the kernel to the process address space.  We dont really need
-            to know what happens in here.</p>
+              <h3>Part 2<a class="headerlink" href="#part-2" title="Permalink to this headline">¶</a></h3>
+              <p>Initializes the kernel memory using <code class="docutils literal notranslate"><span class="pre">setupkvm()</span></code> which maps the
+              pages of the kernel to the process address space.  We dont really need
+              to know what happens in here.</p>
             </section>
+
             <section id="part-3">
-            <h3>Part 3.<a class="headerlink" href="#part-3" title="Permalink to this headline">¶</a></h3>
-            <p>It then moves on to load the sections of the executable file
-            into memory using <code class="docutils literal notranslate"><span class="pre">loaduvm()</span></code> which creates the memory pages for each
-            section and maps them to the address space (by initializing the page
-            table pointers – more details in a bit).  These sections in xv6 are
-            loaded starting at VA 0, and going up.  Each new section starts at the
-            beginning of a new page.  Recall that sections include code,
-            global/static data, etc..</p>
-            <p>Conveniently, we can then keep track of where the user address space
-            ends, which also defines the size of the process using one value
-            (<code class="docutils literal notranslate"><span class="pre">proc-&gt;sz</span></code>).  So, as we map new pages, <code class="docutils literal notranslate"><span class="pre">sz</span></code> (rounded up to the
-            next page) can serve as their virtual address since we are simply
-            filling in the address space sequentially.</p>
-            <p>In VM, we map virtual pages to physical frames.  XV6 has no swap so
-            all memory pages have to be in physical memory.  Physical memory is
-            allocated by the kernel allocator <code class="docutils literal notranslate"><span class="pre">kmalloc</span></code>.  If you want to dig
-            deeper (you need to for the bonus part) you will see how these pages
-            are initialized using <code class="docutils literal notranslate"><span class="pre">kinit()</span></code> and <code class="docutils literal notranslate"><span class="pre">kinit2()</span></code> which are called
-            during the boot process in <code class="docutils literal notranslate"><span class="pre">main.c</span></code>.  As a result, we use
-            <code class="docutils literal notranslate"><span class="pre">kmalloc()</span></code> as we request each new page inside <code class="docutils literal notranslate"><span class="pre">vm.c</span></code> to allocate
-            a new physical page.</p>
-            <p>The <code class="docutils literal notranslate"><span class="pre">vm.c</span></code> functions such as <code class="docutils literal notranslate"><span class="pre">allocuvm()</span></code> typically follow this up
-            with a call to <code class="docutils literal notranslate"><span class="pre">mappages</span></code> which is used to initialize the page table
-            entries mapping the virtual address to the physical page that it just
-            allocated.  Otherwise these physical frames that we allocate cannot be
-            used by our process.</p>
+              <h3>Part 3<a class="headerlink" href="#part-3" title="Permalink to this headline">¶</a></h3>
+              <p>It then moves on to load the sections of the executable file
+              into memory using <code class="docutils literal notranslate"><span class="pre">loaduvm()</span></code> which creates the memory pages for each
+              section and maps them to the address space (by initializing the page
+              table pointers – more details in a bit).  These sections in xv6 are
+              loaded starting at VA 0, and going up.  Each new section starts at the
+              beginning of a new page.  Recall that sections include code,
+              global/static data, etc..</p>
+              <p>Conveniently, we can then keep track of where the user address space
+              ends, which also defines the size of the process using one value
+              (<code class="docutils literal notranslate"><span class="pre">proc-&gt;sz</span></code>).  So, as we map new pages, <code class="docutils literal notranslate"><span class="pre">sz</span></code> (rounded up to the
+              next page) can serve as their virtual address since we are simply
+              filling in the address space sequentially.</p>
+              <p>In VM, we map virtual pages to physical frames.  XV6 has no swap so
+              all memory pages have to be in physical memory.  Physical memory is
+              allocated by the kernel allocator <code class="docutils literal notranslate"><span class="pre">kmalloc</span></code>.  If you want to dig
+              deeper (you need to for the bonus part) you will see how these pages
+              are initialized using <code class="docutils literal notranslate"><span class="pre">kinit()</span></code> and <code class="docutils literal notranslate"><span class="pre">kinit2()</span></code> which are called
+              during the boot process in <code class="docutils literal notranslate"><span class="pre">main.c</span></code>.  As a result, we use
+              <code class="docutils literal notranslate"><span class="pre">kmalloc()</span></code> as we request each new page inside <code class="docutils literal notranslate"><span class="pre">vm.c</span></code> to allocate
+              a new physical page.</p>
+              <p>The <code class="docutils literal notranslate"><span class="pre">vm.c</span></code> functions such as <code class="docutils literal notranslate"><span class="pre">allocuvm()</span></code> typically follow this up
+              with a call to <code class="docutils literal notranslate"><span class="pre">mappages</span></code> which is used to initialize the page table
+              entries mapping the virtual address to the physical page that it just
+              allocated.  Otherwise these physical frames that we allocate cannot be
+              used by our process.</p>
             </section>
+
             <section id="part-4">
-            <h3>Part 4.<a class="headerlink" href="#part-4" title="Permalink to this headline">¶</a></h3>
-            <p>At this point, we loaded code and data sections, and its time
-            to create the stack.  xv6 does not support a heap at the moment (there
-            is no <code class="docutils literal notranslate"><span class="pre">malloc()/free()</span></code> available to user programs if you noticed).
-            It currently maps the stack in its virtual address space at a page right
-            after the last page we loaded from the executable (i.e., at <code class="docutils literal notranslate"><span class="pre">sz</span></code>
-            rounded up to the next page boundary).</p>
-            <p>Since the stack grows down, allocating a page here means there is no
-            room to grow the stack – as it grows down, it will run into the
-            code/data.  To protect against that, xv6 adds one page buffer and
-            marks it as unreadable so that in case the stack grows, we get a
-            memory error and can stop the program.  The code to create the stack is:</p>
-            <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="nb">round</span> <span class="n">sz</span> <span class="n">up</span> <span class="n">to</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">page</span> <span class="n">boundary</span> <span class="n">since</span> <span class="n">stack</span> <span class="n">must</span> <span class="n">start</span>
-            <span class="o">//</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">new</span> <span class="n">page</span>
-            <span class="n">sz</span> <span class="o">=</span> <span class="n">PGROUNDUP</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span>
-            
-            <span class="o">//</span> <span class="n">our</span> <span class="n">first</span> <span class="n">introduction</span> <span class="n">to</span> <span class="n">allocuvm</span><span class="p">;</span> <span class="n">it</span> <span class="n">allocates</span> <span class="ow">and</span> <span class="n">maps</span> <span class="n">two</span> <span class="n">pages</span>
-            <span class="k">if</span><span class="p">((</span><span class="n">sz</span> <span class="o">=</span> <span class="n">allocuvm</span><span class="p">(</span><span class="n">pgdir</span><span class="p">,</span> <span class="n">sz</span><span class="p">,</span> <span class="n">sz</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">PGSIZE</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-                <span class="n">goto</span> <span class="n">bad</span><span class="p">;</span>
-            
-            <span class="o">//</span> <span class="n">we</span> <span class="n">clear</span> <span class="n">the</span> <span class="n">PTE</span> <span class="k">for</span> <span class="n">the</span> <span class="n">first</span> <span class="n">page</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">buffer</span> <span class="n">page</span>
-            <span class="o">//</span> <span class="n">between</span> <span class="n">stack</span> <span class="ow">and</span> <span class="n">code</span><span class="o">/</span><span class="n">data</span>
-            <span class="n">clearpteu</span><span class="p">(</span><span class="n">pgdir</span><span class="p">,</span> <span class="p">(</span><span class="n">char</span><span class="o">*</span><span class="p">)(</span><span class="n">sz</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">PGSIZE</span><span class="p">));</span>
-            </pre></div>
-            </div>
-            <p>TODO 1: This is the part of the code that we need to change to move
-            the stack.  The current code calls allocuvm to create two pages,
-            one for the stack and one as a guard page starting at VA <code class="docutils literal notranslate"><span class="pre">sz</span></code> which
-            is right after the code and data.  It then clears the page table entry
-            for the guard page.</p>
-            <p>We want to locate the stack starting at the top of the
-            user address space to give it room to grow.  To understand what we
-            need to do, lets look at <code class="docutils literal notranslate"><span class="pre">allocuvm</span></code>.</p>
-            <p>It takes 3 parameters:</p>
-            <ol class="arabic simple">
-            <li><p>The page table (<code class="docutils literal notranslate"><span class="pre">pgdir</span></code>).  This will not change</p></li>
-            <li><p>The virtual address of the first page we are mapping – this needs
-            to change to point to the top page of the user part of memory (right
-            under <code class="docutils literal notranslate"><span class="pre">KERNBASE</span></code>).  If you use <code class="docutils literal notranslate"><span class="pre">kernbase</span></code>, you will try to map
-            the page to the kernel address space.</p></li>
-            <li><p>The virtual address of the last page we are mapping.  For us, we
-            are creating a stack with only a single page, so this can another
-            address in the same page, slightly bigger than the first address.</p></li>
-            </ol>
-            <p><code class="docutils literal notranslate"><span class="pre">allocuvm</span></code> allocates the page, and maps it to the page table.  So,
-            basically we are done with moving the stack by just changing these
-            parameters to the right value.  However, there are a few loose ends to
-            tie up.</p>
+              <h3>Part 4<a class="headerlink" href="#part-4" title="Permalink to this headline">¶</a></h3>
+              <p>At this point, we loaded code and data sections, and its time
+              to create the stack.  xv6 does not support a heap at the moment (there
+              is no <code class="docutils literal notranslate"><span class="pre">malloc()/free()</span></code> available to user programs if you noticed).
+              It currently maps the stack in its virtual address space at a page right
+              after the last page we loaded from the executable (i.e., at <code class="docutils literal notranslate"><span class="pre">sz</span></code>
+              rounded up to the next page boundary).</p>
+              <p>Since the stack grows down, allocating a page here means there is no
+              room to grow the stack – as it grows down, it will run into the
+              code/data.  To protect against that, xv6 adds one page buffer and
+              marks it as unreadable so that in case the stack grows, we get a
+              memory error and can stop the program.  The code to create the stack is:</p>
+              <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="nb">round</span> <span class="n">sz</span> <span class="n">up</span> <span class="n">to</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">page</span> <span class="n">boundary</span> <span class="n">since</span> <span class="n">stack</span> <span class="n">must</span> <span class="n">start</span>
+              <span class="o">//</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">new</span> <span class="n">page</span>
+              <span class="n">sz</span> <span class="o">=</span> <span class="n">PGROUNDUP</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span>
+              
+              <span class="o">//</span> <span class="n">our</span> <span class="n">first</span> <span class="n">introduction</span> <span class="n">to</span> <span class="n">allocuvm</span><span class="p">;</span> <span class="n">it</span> <span class="n">allocates</span> <span class="ow">and</span> <span class="n">maps</span> <span class="n">two</span> <span class="n">pages</span>
+              <span class="k">if</span><span class="p">((</span><span class="n">sz</span> <span class="o">=</span> <span class="n">allocuvm</span><span class="p">(</span><span class="n">pgdir</span><span class="p">,</span> <span class="n">sz</span><span class="p">,</span> <span class="n">sz</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">PGSIZE</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+                  <span class="n">goto</span> <span class="n">bad</span><span class="p">;</span>
+              
+              <span class="o">//</span> <span class="n">we</span> <span class="n">clear</span> <span class="n">the</span> <span class="n">PTE</span> <span class="k">for</span> <span class="n">the</span> <span class="n">first</span> <span class="n">page</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">buffer</span> <span class="n">page</span>
+              <span class="o">//</span> <span class="n">between</span> <span class="n">stack</span> <span class="ow">and</span> <span class="n">code</span><span class="o">/</span><span class="n">data</span>
+              <span class="n">clearpteu</span><span class="p">(</span><span class="n">pgdir</span><span class="p">,</span> <span class="p">(</span><span class="n">char</span><span class="o">*</span><span class="p">)(</span><span class="n">sz</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">PGSIZE</span><span class="p">));</span>
+              </pre></div>
+              </div>
+              <p>TODO 1: This is the part of the code that we need to change to move
+              the stack.  The current code calls allocuvm to create two pages,
+              one for the stack and one as a guard page starting at VA <code class="docutils literal notranslate"><span class="pre">sz</span></code> which
+              is right after the code and data.  It then clears the page table entry
+              for the guard page.</p>
+              <p>We want to locate the stack starting at the top of the
+              user address space to give it room to grow.  To understand what we
+              need to do, lets look at <code class="docutils literal notranslate"><span class="pre">allocuvm</span></code>.</p>
+              <p>It takes 3 parameters:</p>
+              <ol class="arabic simple">
+              <li><p>The page table (<code class="docutils literal notranslate"><span class="pre">pgdir</span></code>).  This will not change</p></li>
+              <li><p>The virtual address of the first page we are mapping – this needs
+              to change to point to the top page of the user part of memory (right
+              under <code class="docutils literal notranslate"><span class="pre">KERNBASE</span></code>).  If you use <code class="docutils literal notranslate"><span class="pre">kernbase</span></code>, you will try to map
+              the page to the kernel address space.</p></li>
+              <li><p>The virtual address of the last page we are mapping.  For us, we
+              are creating a stack with only a single page, so this can another
+              address in the same page, slightly bigger than the first address.</p></li>
+              </ol>
+              <p><code class="docutils literal notranslate"><span class="pre">allocuvm</span></code> allocates the page, and maps it to the page table.  So,
+              basically we are done with moving the stack by just changing these
+              parameters to the right value.  However, there are a few loose ends to
+              tie up.</p>
             </section>
+
+
             <section id="part-5">
-            <h3>Part 5.<a class="headerlink" href="#part-5" title="Permalink to this headline">¶</a></h3>
-            <p>Finally, we initialize the stack pointer, currently to <code class="docutils literal notranslate"><span class="pre">sz</span></code>.</p>
-            <p>TODO 2: you will have to change this to the address of the top word in
-            the stack page.  Note that <code class="docutils literal notranslate"><span class="pre">KERNBASE</span></code> is the first word in the kernel
-            address space, so this is the word right under that.</p>
-            <p>We proceed to initialize the stack with the parameters for main as per
-            the linux/x86 stack convention.  The details are not important to us
-            for now.</p>
+              <h3>Part 5<a class="headerlink" href="#part-5" title="Permalink to this headline">¶</a></h3>
+              <p>Finally, we initialize the stack pointer, currently to <code class="docutils literal notranslate"><span class="pre">sz</span></code>.</p>
+              <p>TODO 2: you will have to change this to the address of the top word in
+              the stack page.  Note that <code class="docutils literal notranslate"><span class="pre">KERNBASE</span></code> is the first word in the kernel
+              address space, so this is the word right under that.</p>
+              <p>We proceed to initialize the stack with the parameters for main as per
+              the linux/x86 stack convention.  The details are not important to us
+              for now.</p>
             </section>
+
+
             <section id="loose-ends-other-changes">
-            <h3>Loose Ends/Other changes.<a class="headerlink" href="#loose-ends-other-changes" title="Permalink to this headline">¶</a></h3>
-            <p>Now that we moved the stack, a few places in the Kernel that hard
-            coded the previous location of the stack have to be changed.  These
-            include:</p>
-            <p>TODO 3: All of the functions that are defined in <code class="docutils literal notranslate"><span class="pre">syscall.c</span></code>
-            (and <code class="docutils literal notranslate"><span class="pre">sysfile.c</span></code>) for accessing the user stack have some checks to
-            see if the addresses are indeed on the stack.  These checks compare
-            the address against <code class="docutils literal notranslate"><span class="pre">sz</span></code> since that was the top of the stack in the
-            old implementation.  You have to change those checks (or remove them
-            if it is easier).  Check all the accessor functions such as
-            <code class="docutils literal notranslate"><span class="pre">argint,</span> <span class="pre">argstr,</span> <span class="pre">argptr,</span> <span class="pre">argfd,</span></code> etc…</p>
-            <p>TODO 4: <code class="docutils literal notranslate"><span class="pre">copyuvm()</span></code>.  This function is used as part of <code class="docutils literal notranslate"><span class="pre">fork()</span></code>
-            to create a copy of the address space of the parent process calling
-            fork to the child process.  It is implemented in vm.c</p>
-            <p>If you look at this function, it is one big for loop that iterates
-            over the virtual address space and copies the pages one by one.
-            The loop starts with:</p>
-            <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sz</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">PGSIZE</span><span class="p">){</span>
-            </pre></div>
-            </div>
-            <p>since it assumes the virtual address space starts at 0 and goes to <code class="docutils literal notranslate"><span class="pre">sz</span></code>.
-            Now this has to be changed to take into account the new stack.</p>
-            <p>If we look deeper, it reads the page table to get the PTE for the
-            page, allocates a new physical frames, and copies the page from the
-            parent memory to the new page.  Finally it uses <code class="docutils literal notranslate"><span class="pre">mappages</span></code> to map this
-            new copy to the child address space by adding a PTE to its page table.</p>
-            <p>How do we change it?  Now <code class="docutils literal notranslate"><span class="pre">sz</span></code> tracks the bottom part of the address
-            space, so its ok to leave that loop alone.  We have to keep track of
-            the size of the stack, and added another loop that iterates over the
-            stack page(s) and does the same thing (<code class="docutils literal notranslate"><span class="pre">kmallocs</span></code> a page for each one,
-            <code class="docutils literal notranslate"><span class="pre">memmoves</span></code> to create a copy from the parent, and then <code class="docutils literal notranslate"><span class="pre">mapages()</span></code>
-            to add it to page table).</p>
-            <p>The loop will be very similar, with the exception of the virtual
-            address ranges that iterates over.  Before we add stack growth, the
-            stack is only one page, but as the stack grows we need to keep track
-            of the number of stack pages. To prepare for this, we need to add a
-            variable in struct proc to keep track of the size of the stack (in
-            pages or bytes–either is fine, but I recommend pages).  This counter
-            starts out with a stack of one page; set it in <code class="docutils literal notranslate"><span class="pre">exec()</span></code>.</p>
-            <p>Debugging: If your stack moved correctly, xv6 will be able to boot
-            into shell successfully.</p>
-            <p>If you don’t allocate/map the stack correctly, you will get errors
-            either in the allocation functions (e.g., remapping errors) or as your
-            program runs (page faults).</p>
-            <p>If you don’t take care of all the <code class="docutils literal notranslate"><span class="pre">argint()</span></code> etc.. functions some of
-            your system calls will not be able to pass parameters correctly.  The
-            results could be weird.  For example, printf won’t print, and wait
-            wont wait (leading to init continuing to fork processes, etc…)</p>
+              <h3>Loose Ends/Other changes<a class="headerlink" href="#loose-ends-other-changes" title="Permalink to this headline">¶</a></h3>
+              <p>Now that we moved the stack, a few places in the Kernel that hard
+              coded the previous location of the stack have to be changed.  These
+              include:</p>
+              <p>TODO 3: All of the functions that are defined in <code class="docutils literal notranslate"><span class="pre">syscall.c</span></code>
+              (and <code class="docutils literal notranslate"><span class="pre">sysfile.c</span></code>) for accessing the user stack have some checks to
+              see if the addresses are indeed on the stack.  These checks compare
+              the address against <code class="docutils literal notranslate"><span class="pre">sz</span></code> since that was the top of the stack in the
+              old implementation.  You have to change those checks (or remove them
+              if it is easier).  Check all the accessor functions such as
+              <code class="docutils literal notranslate"><span class="pre">argint,</span> <span class="pre">argstr,</span> <span class="pre">argptr,</span> <span class="pre">argfd,</span></code> etc…</p>
+              <p>TODO 4: <code class="docutils literal notranslate"><span class="pre">copyuvm()</span></code>.  This function is used as part of <code class="docutils literal notranslate"><span class="pre">fork()</span></code>
+              to create a copy of the address space of the parent process calling
+              fork to the child process.  It is implemented in vm.c</p>
+              <p>If you look at this function, it is one big for loop that iterates
+              over the virtual address space and copies the pages one by one.
+              The loop starts with:</p>
+              <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sz</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">PGSIZE</span><span class="p">){</span>
+              </pre></div>
+              </div>
+              <p>since it assumes the virtual address space starts at 0 and goes to <code class="docutils literal notranslate"><span class="pre">sz</span></code>.
+              Now this has to be changed to take into account the new stack.</p>
+              <p>If we look deeper, it reads the page table to get the PTE for the
+              page, allocates a new physical frames, and copies the page from the
+              parent memory to the new page.  Finally it uses <code class="docutils literal notranslate"><span class="pre">mappages</span></code> to map this
+              new copy to the child address space by adding a PTE to its page table.</p>
+              <p>How do we change it?  Now <code class="docutils literal notranslate"><span class="pre">sz</span></code> tracks the bottom part of the address
+              space, so its ok to leave that loop alone.  We have to keep track of
+              the size of the stack, and added another loop that iterates over the
+              stack page(s) and does the same thing (<code class="docutils literal notranslate"><span class="pre">kmallocs</span></code> a page for each one,
+              <code class="docutils literal notranslate"><span class="pre">memmoves</span></code> to create a copy from the parent, and then <code class="docutils literal notranslate"><span class="pre">mapages()</span></code>
+              to add it to page table).</p>
+              <p>The loop will be very similar, with the exception of the virtual
+              address ranges that iterates over.  Before we add stack growth, the
+              stack is only one page, but as the stack grows we need to keep track
+              of the number of stack pages. To prepare for this, we need to add a
+              variable in struct proc to keep track of the size of the stack (in
+              pages or bytes–either is fine, but I recommend pages).  This counter
+              starts out with a stack of one page; set it in <code class="docutils literal notranslate"><span class="pre">exec()</span></code>.</p>
+              <p>Debugging: If your stack moved correctly, xv6 will be able to boot
+              into shell successfully.</p>
+              <p>If you don’t allocate/map the stack correctly, you will get errors
+              either in the allocation functions (e.g., remapping errors) or as your
+              program runs (page faults).</p>
+              <p>If you don’t take care of all the <code class="docutils literal notranslate"><span class="pre">argint()</span></code> etc.. functions some of
+              your system calls will not be able to pass parameters correctly.  The
+              results could be weird.  For example, printf won’t print, and wait
+              wont wait (leading to init continuing to fork processes, etc…)</p>
             </section>
+
+
             <section id="growing-the-stack">
-            <h3>Growing the stack.<a class="headerlink" href="#growing-the-stack" title="Permalink to this headline">¶</a></h3>
-            <p>Now that our stack has been moved, we have room to grow it.  When the
-            a program causes the stack to grow to an offset bigger than one page,
-            at this point, we will be accessing a page that is not
-            allocated/mapped.  This will cause a page fault.  Basically, we will
-            trap to the trap handler in trap.c</p>
-            <p>In there there is a switch statement with a case for every supported
-            trap.  We need to add a case for page faults.  This page fault has
-            trap number 14 (or <code class="docutils literal notranslate"><span class="pre">T_PGFLT</span></code>) as defined in <code class="docutils literal notranslate"><span class="pre">traps.h</span></code>.</p>
-            <p>TODO 5: Add a case for the page fault.  When a page fault occurs,
-            you can check the address that caused the page fault in a hardware
-            register called <code class="docutils literal notranslate"><span class="pre">CR2</span></code>.  The CR register (standing for Control
-            Register) keep track of important hardware state information.
-            You can read the <code class="docutils literal notranslate"><span class="pre">CR2</span></code> register using the function <code class="docutils literal notranslate"><span class="pre">rcr2()</span></code>.</p>
-            <p>Once you have the offending address, next we need to check if it is
-            from the page right under the current bottom of the stack.  If it is,
-            we need to grow the stack.  You can use <code class="docutils literal notranslate"><span class="pre">allocuvm</span></code> again, but you have
-            to initialize it with the right parameters to allocate one page at the
-            right place.  After that, you can increment your stack size counter,
-            which finishes your trap handler.</p>
-            <p>Voila! you should be good to go.</p>
-            <p>To check if the stack grows correctly, write a recursive program that
-            nests deep enough to get a stack longer than 1 page.  You should get a
-            page fault and grow the stack correctly if your implementation works.</p>
+              <h3>Growing the stack<a class="headerlink" href="#growing-the-stack" title="Permalink to this headline">¶</a></h3>
+              <p>Now that our stack has been moved, we have room to grow it.  When the
+              a program causes the stack to grow to an offset bigger than one page,
+              at this point, we will be accessing a page that is not
+              allocated/mapped.  This will cause a page fault.  Basically, we will
+              trap to the trap handler in trap.c</p>
+              <p>In there there is a switch statement with a case for every supported
+              trap.  We need to add a case for page faults.  This page fault has
+              trap number 14 (or <code class="docutils literal notranslate"><span class="pre">T_PGFLT</span></code>) as defined in <code class="docutils literal notranslate"><span class="pre">traps.h</span></code>.</p>
+              <p>TODO 5: Add a case for the page fault.  When a page fault occurs,
+              you can check the address that caused the page fault in a hardware
+              register called <code class="docutils literal notranslate"><span class="pre">CR2</span></code>.  The CR register (standing for Control
+              Register) keep track of important hardware state information.
+              You can read the <code class="docutils literal notranslate"><span class="pre">CR2</span></code> register using the function <code class="docutils literal notranslate"><span class="pre">rcr2()</span></code>.</p>
+              <p>Once you have the offending address, next we need to check if it is
+              from the page right under the current bottom of the stack.  If it is,
+              we need to grow the stack.  You can use <code class="docutils literal notranslate"><span class="pre">allocuvm</span></code> again, but you have
+              to initialize it with the right parameters to allocate one page at the
+              right place.  After that, you can increment your stack size counter,
+              which finishes your trap handler.</p>
+              <p>Voila! you should be good to go.</p>
+              <p>To check if the stack grows correctly, write a recursive program that
+              nests deep enough to get a stack longer than 1 page.  You should get a
+              page fault and grow the stack correctly if your implementation works.</p>
             </section>
             </section>
             </section>
