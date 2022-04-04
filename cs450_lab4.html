@@ -163,7 +163,7 @@
             <h3>Part 2: Growing the Stack</h3>
             <p>The final item, which is challenging: automatically growing the
             stack backwards when needed.  Getting this to work will make you into
-            a kernel boss, and also get you those last 10% of credit.  Briefly,
+            a kernel boss.  Briefly,
             here is what you need to do.  When the stack grows beyond its
             allocated page(s) it will cause a page fault because it is accessing
             an unmapped page.  If you look in traps.h, this trap is <code class="docutils literal notranslate"><span class="pre">T_PGFLT</span></code>
@@ -189,12 +189,12 @@
             <p><strong>Particularly useful for this project:</strong>
             Chapter 1 of xv6 + anything else about <code class="docutils literal notranslate"><span class="pre">fork()</span></code> and <code class="docutils literal notranslate"><span class="pre">exec()</span></code>,
             as well as virtual memory.</p>
-            <p>Take a look at the <code class="docutils literal notranslate"><span class="pre">exec</span></code> code in exec.c which loads a
+            <!-- <p>Take a look at the <code class="docutils literal notranslate"><span class="pre">exec</span></code> code in exec.c which loads a
             program into memory.  It will be using VM functions from <code class="docutils literal notranslate"><span class="pre">vm.c</span></code>
             such as <code class="docutils literal notranslate"><span class="pre">allocuvm</span></code> (which uses <code class="docutils literal notranslate"><span class="pre">mappages</span></code>).  These will be very
             instructive for implementing <code class="docutils literal notranslate"><span class="pre">shm_open</span></code> (in lab 4) – we are
             allocating a new page the first time (similar to <code class="docutils literal notranslate"><span class="pre">allocuvm</span></code>) and
-            adding it to the page table (similar to <code class="docutils literal notranslate"><span class="pre">mappages</span></code>).</p>
+            adding it to the page table (similar to <code class="docutils literal notranslate"><span class="pre">mappages</span></code>).</p> -->
             <p>It may be helpful to try to answer these questions to yourself:</p>
             <ul class="simple">
             <li><p>Read chapter 2 in the xv6 book.  Briefly explain the operation of
