@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Yue Duan's Homepage</title>
+
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom fonts for this template -->
+<link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
+<link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/resume.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+	<a class="navbar-brand js-scroll-trigger" href="#page-top">
+	  <span class="d-block d-lg-none">Yue Duan' Homepage</span>
+	  <span class="d-none d-lg-block">
+		<img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/yue_duan.jpeg" alt="Yue Duan">
+	  </span>
+	</a>
+	
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav">
+		<li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="index.html">Home</a>
+		</li>
+    <li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="lab.html">Lab Members</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="pub.html">Publication</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="services.html">Professional Services</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="teaching.html">Teaching</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="honors.html">Selected Honors</a>
+		</li>
+		</ul>
+	</div>
+</nav>
+
+<div class="container-fluid p-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
+
+  
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+          <h2>Lab 1: Static Analysis on Android Applications
+          </h2>
+  
+          <p>
+            <b>Handed out Saturday Sep 17 2022<br>
+              Due Monday Oct 17 2022
+            </b>
+          </p>
+          
+          <br><br>
+          <h3>1. Introduction
+          </h3>
+          
+            In this lab, you will implement a static analyzer for Android applications. The static analyzer will be based on Soot, which is a open-source framework for analyzing and transforming Java and Android applications. Your static analyzers takes as input an Android app (an .apk file that is given by the instructor), and outputs two kinds of things: 1). control-flow graphs (in .dot file format) for each function; 2). a file that contains the sensitive API usage information within the given app. 
+            
+            <br>
+            You will be graded by reports. Randomly seletected students (~10%) are expected to explain your code and demonstrate that you understand what you did and why you did it that way.
+          <br><br>
+
+          
+          <h3>2. Getting started</h3>
+
+            </p>
+            <p>To get started:
+
+              <p><b>a) Download the <a href="course_materials/cs527/demo.apk">Android app</a>.</b>  
+              </p>
+
+              <p><b>b) Download the <a href="course_materials/cs527/sensitive_apis.csv">spreadsheet</a> that contains Android sensitive API list (Android APIs that need permissions to run).</b> 
+              </p>
+
+              <p><b>c) Download <a href="http://soot-oss.github.io/soot/">Soot</a> and configure it up. Please check out this <a href="https://github.com/noidsirius/SootTutorial">Soot tutorial</a> for more information.</b> 
+              </p>
+              
+            <br><br>
+              
+              
+              <h3>3. Assignment</h3>
+  
+  
+              <p><b>a) Collect sensitive API usage information.</b>  
+                Given an Android application, your job is to perform static analysis to extract sensitive API usage information, and dump the info into a text file. <br>
+                Each line should read: API_name:frequency:residing functions <br>
+                For example:  <code class="docutils literal notranslate"><span class="pre">getLastLocation:2:foo(),bar()</span></code> means the sensitive API getLastLocation() is called twice within the whole application, in functions foo() and bar() repectively. 
+  
+              </p>
+
+              <p><b>b) Control-flow graph printing.</b> 
+                For each function within the Android app, please print out its control-flow graph and save it in a <a href="https://en.wikipedia.org/wiki/DOT_(graph_description_language)">dot</a> file. 
+              </p>
+             
+              <br><br>
+              
+              <h3>4. What to submit</h3>
+              You need to submit a report that includes the folowing:
+              <ul>
+                <li>Screenshot of your code (only your code)
+                </li>
+                <li>Detailed explanation about the code
+                </li>
+                <li>Screenshots about how you run the code and results
+                </li>
+              </ul>
+  
+                  </div>
+                </div>
+              </div>
+    </section>
+  
+  
+  
+  </div>
+
+
+
+
+
+
+
+
+<!-- Bootstrap core JavaScript -->
+<!-- <script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="js/resume.min.js"></script>
+
+</body>
+
+</html>
