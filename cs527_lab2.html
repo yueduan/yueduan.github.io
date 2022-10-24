@@ -73,12 +73,12 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-          <h2>Lab 1: Static Analysis on Android Applications
+          <h2>Lab 1: Symbolic Execution
           </h2>
   
           <p>
-            <b>Handed out Sunday Sep 18 2022<br>
-              Due Monday Oct 17 2022 (Extended to Oct 20 2022)
+            <b>Handed out Monday Oct 24 2022<br>
+              Due Friday Nov 18 2022
             </b>
           </p>
           
@@ -86,7 +86,7 @@
           <h3>1. Introduction
           </h3>
           
-            In this lab, you will implement a static analyzer for Android applications. The static analyzer will be based on Soot, which is a open-source framework for analyzing and transforming Java and Android applications. Your static analyzers takes as input an Android app (an .apk file that is given by the instructor), and outputs two kinds of things: 1). control-flow graphs (in .dot file format) for each function; 2). a file that contains the sensitive API usage information within the given app. 
+            In this lab, you will implement a simple tool that collects some statistics about a binary executable file and performs symbolic execution, using an open-source symbolic execution engine named Angr. Your tool takes as input a binary file (given by the instructor), and outputs three things: 1). interprocedural control-flow graph in a dot file; 2). statistics about the binary; 3). correct inputs to reach some target places.
             
             <br>
             You will be graded by reports. Randomly seletected students (~10%) are expected to explain your code and demonstrate that you understand what you did and why you did it that way.
@@ -98,14 +98,14 @@
             </p>
             <p>To get started:
 
-              <p><b>a) Download the <a href="course_materials/cs527/lab1/demo.apk">Android app</a>.</b>  
+              <p><b>a) Download the <a href="course_materials/cs527/lab2/test">binary</a>.</b>  
               </p>
 
-              <p><b>b) Download the <a href="course_materials/cs527/lab1/sensitive_apis.csv">spreadsheet</a> that contains Android sensitive API list (Android APIs that need permissions to run).</b> 
+              <p><b>b)  Download <a href="https://github.com/angr/angr">Angr</a> and configure it up. Please refer to this <a href="https://docs.angr.io/introductory-errata/install">tutorial</a> on how to install.</b> 
               </p>
 
-              <p><b>c) Download <a href="http://soot-oss.github.io/soot/">Soot</a> and configure it up. Please check out this <a href="https://github.com/noidsirius/SootTutorial">Soot tutorial</a> for more information.</b> 
-              </p>
+              <!-- <p><b>c) Download <a href="https://github.com/angr/angr">Angr</a> and configure it up. Please refer to this <a href="https://docs.angr.io/introductory-errata/install">tutorial</a> on how to install.</b> 
+              </p> -->
               
             <br><br>
               
@@ -113,15 +113,13 @@
               <h3>3. Assignment</h3>
   
   
-              <p><b>a) Collect sensitive API usage information.</b>  
-                Given an Android application, your job is to perform static analysis to extract sensitive API usage information, and dump the info into a text file. <br>
-                Each line should read: API_name:frequency:residing functions <br>
-                For example:  <code class="docutils literal notranslate"><span class="pre">getLastLocation:2:foo(),bar()</span></code> means the sensitive API getLastLocation() is called twice within the whole application, in functions foo() and bar() repectively. 
+              <p><b>a) Control-flow graph generation.</b>  
+                Given a binary, your job is to output the interprocedural control-flow graph for the entire binary into a dot format file. Moreover, you need to print out the following numbers: 1). number of nodes; 2). number of edges; 3) number of different instruction types.
   
               </p>
 
-              <p><b>b) Control-flow graph printing.</b> 
-                For each function within the Android app, please print out its control-flow graph and save it in a <a href="https://en.wikipedia.org/wiki/DOT_(graph_description_language)">dot</a> file. 
+              <p><b>b) Symbolic Execution.</b> 
+                Given a binary, your job is to write a script to 1). find addresses for all 'put' functions; 2). feed the addresses as targets to the symbolic execution engine; 3). perform symbolic execution to generate correct inputs to trigger these 'put' functions.
               </p>
              
               <br><br>
@@ -133,7 +131,7 @@
                 </li>
                 <li>Detailed explanation about the code
                 </li>
-                <li>Screenshots about how you run the code and results
+                <li>Screenshots about how you run the code and results (2 files: cfg dot file, a file that contains statistics and correct inputs)
                 </li>
               </ul>
   
