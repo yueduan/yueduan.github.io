@@ -73,12 +73,12 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-          <h2>Lab 1: Symbolic Execution
+          <h2>Lab 3: Smart Contract Analysis
           </h2>
   
           <p>
-            <b>Handed out Monday Oct 24 2022<br>
-              Due Friday Nov 18 2022
+            <b>Handed out Nov 18 2022<br>
+              Due Monday Dec 5 2022
             </b>
           </p>
           
@@ -86,8 +86,8 @@
           <h3>1. Introduction
           </h3>
           
-            In this lab, you will implement a simple tool that collects some statistics about a binary executable file and performs symbolic execution, using an open-source symbolic execution engine named Angr. Your tool takes as input a binary file (given by the instructor), and outputs three things: 1). interprocedural control-flow graph in a dot file; 2). statistics about the binary; 3). correct inputs to reach some target places.
-            
+            In this lab, you will implement a static analysis tool that performs static analysis on a smart contract and generates program dependence graphs (PDG) for each function within a given smart contract (provided by the instructor). Your tool will be based on an existing open-source smart contract static analyzer named Slither. Your tool takes as input source code of a smart contract, and outputs two things: 1) PDGs for each function in dot format; 2). statistics about these graphs.
+                  
             <br>
             You will be graded by reports. Randomly seletected students (~10%) are expected to explain your code and demonstrate that you understand what you did and why you did it that way.
           <br><br>
@@ -98,10 +98,10 @@
             </p>
             <p>To get started:
 
-              <p><b>a) Download the <a href="course_materials/cs527/lab2/test">binary</a>.</b>  
+              <p><b>a) Download the <a href="course_materials/cs527/lab2/test">source code of the smart contract</a>.</b>  
               </p>
 
-              <p><b>b)  Download <a href="https://github.com/angr/angr">Angr</a> and configure it up. Please refer to this <a href="https://docs.angr.io/introductory-errata/install">tutorial</a> on how to install.</b> 
+              <p><b>b)  Download <a href="https://github.com/angr/angr">Slither</a> and configure it up. Please refer to this <a href="https://docs.angr.io/introductory-errata/install">tutorial</a> on how to install.</b> 
               </p>
 
               <!-- <p><b>c) Download <a href="https://github.com/angr/angr">Angr</a> and configure it up. Please refer to this <a href="https://docs.angr.io/introductory-errata/install">tutorial</a> on how to install.</b> 
@@ -113,13 +113,13 @@
               <h3>3. Assignment</h3>
   
   
-              <p><b>a) Control-flow graph generation.</b>  
-                Given a binary, your job is to output the interprocedural control-flow graph for the entire binary into a dot format file. Moreover, you need to print out the following numbers: 1). number of nodes in the graph; 2). number of edges in the graph; 3) number of different instruction types.
+              <p><b>a) Program Dependence Graph generation.</b>  
+                Given a smart contract, your job is to output the PDG for each function wihtin the smart contract into a dot format file. 
   
               </p>
 
-              <p><b>b) Symbolic Execution.</b> 
-                Given a binary, your job is to write a script to 1). find addresses for all 'put' functions; 2). feed the addresses as targets to the symbolic execution engine; 3). perform symbolic execution to generate correct inputs to trigger these 'put' functions.
+              <p><b>b) statistics.</b> 
+                You need to print out the following numbers in a file: 1). number of graphs 2). number of nodes and edges within each graph; 3) number of different instruction types.
               </p>
              
               <br><br>
