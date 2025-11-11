@@ -114,27 +114,42 @@ a {
   a:hover, a:focus, a:active {
     color: rgb(197, 55, 55); }
 
-/* One-line row */
+
+    
+
+    /* One-line row */
 .sponsors-line {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   gap: 16px;
-  overflow-x: auto;
+  overflow-x: auto;   /* scroll if too narrow */
+  padding: 4px 0;
 }
 
-/* Uniform boxes with background logos */
-.bg-logos .logo {
-  width: 140px;
+/* Uniform clickable box */
+.sponsors-line.same-size a {
+  display: inline-flex;
+  width: 140px;       /* adjust once for all */
   height: 56px;
-  background-image: var(--logo);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;    /* consistent visual size */
-  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
   border: 1px solid #e9e9e9;
   border-radius: 8px;
-  display: inline-block;
   flex: 0 0 auto;
-  text-decoration: none;
+}
+
+/* Scale logos to fit without distortion */
+.sponsors-line.same-size img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Optional: counter extra transparent padding inside some PNGs */
+.sponsors-line.same-size img.tighten {
+  width: 110%;
+  height: 110%;
 }
