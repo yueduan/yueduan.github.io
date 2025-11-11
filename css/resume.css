@@ -117,39 +117,31 @@ a {
 
     
 
-    /* One-line row */
+/* Single-line row with scroll when needed */
 .sponsors-line {
   display: flex;
-  flex-wrap: nowrap;
   align-items: center;
   gap: 16px;
-  overflow-x: auto;   /* scroll if too narrow */
-  padding: 4px 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 6px 0;
 }
 
-/* Uniform clickable box */
-.sponsors-line.same-size a {
-  display: inline-flex;
-  width: 140px;       /* adjust once for all */
-  height: 56px;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
+/* Uniform clickable logo boxes */
+.sponsors-line .logo {
+  width: 150px;              /* adjust once for all logos */
+  height: 60px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;  /* preserves brand proportions */
+  background-color: #fff;
   border: 1px solid #e9e9e9;
   border-radius: 8px;
   flex: 0 0 auto;
+  display: inline-block;
 }
 
-/* Scale logos to fit without distortion */
-.sponsors-line.same-size img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-/* Optional: counter extra transparent padding inside some PNGs */
-.sponsors-line.same-size img.tighten {
-  width: 110%;
-  height: 110%;
+/* Optional: subtle hover for polish */
+.sponsors-line .logo:hover {
+  box-shadow: 0 0 0 2px #f2f2f2 inset;
 }
