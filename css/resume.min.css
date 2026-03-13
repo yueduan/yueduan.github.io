@@ -34,3 +34,107 @@
   flex: 0 0 auto;
   display: inline-block;
 }
+
+/* ===== Fancy enhancements ===== */
+
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+section.resume-section { animation: fadeInUp .6s ease-out both; }
+
+/* Sidebar gradient & glow on profile image */
+@media (min-width:992px) {
+  #sideNav {
+    background: linear-gradient(160deg, rgb(197,55,55) 0%, rgb(140,30,30) 100%) !important;
+  }
+  #sideNav .navbar-brand .img-profile {
+    border: .4rem solid rgba(255,255,255,.35);
+    box-shadow: 0 0 20px rgba(0,0,0,.25);
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  #sideNav .navbar-brand .img-profile:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 28px rgba(0,0,0,.35);
+  }
+}
+
+/* Nav link hover underline effect */
+#sideNav .navbar-nav .nav-item .nav-link {
+  position: relative;
+  transition: color .25s ease, letter-spacing .25s ease;
+}
+#sideNav .navbar-nav .nav-item .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  width: 0; height: 2px;
+  background: rgba(255,255,255,.7);
+  transition: width .25s ease, left .25s ease;
+}
+#sideNav .navbar-nav .nav-item .nav-link:hover::after {
+  width: 60%; left: 20%;
+}
+#sideNav .navbar-nav .nav-item .nav-link:hover {
+  letter-spacing: .5px;
+}
+
+/* Smooth link transitions everywhere */
+a { transition: color .2s ease; }
+
+/* Better section dividers */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, rgb(197,55,55) 0%, transparent 100%);
+  margin: 2rem 0;
+}
+
+/* Section label badges */
+.section-label {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.section-label-red    { background: rgb(197,55,55); }
+.section-label-blue   { background: #1e90ff; }
+.section-label-orange { background: #e08a2e; }
+
+/* News items styling */
+.news-list {
+  list-style: none;
+  padding-left: 0;
+  line-height: 1.9;
+}
+.news-list b {
+  color: rgb(197,55,55);
+  font-size: .92em;
+}
+
+/* Sponsor logos polish */
+.sponsors-line img {
+  height: 55px;
+  width: auto;
+  filter: grayscale(30%);
+  opacity: .85;
+  transition: filter .3s ease, opacity .3s ease, transform .3s ease;
+}
+.sponsors-line img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+/* Subtle body background */
+body {
+  background: #fafafa;
+}
