@@ -138,3 +138,64 @@ hr {
 body {
   background: #fafafa;
 }
+
+/* Additional section label colors */
+.section-label-green  { background: #2e8b57; }
+.section-label-purple { background: #7b5ea7; }
+.section-label-teal   { background: #2a9d8f; }
+
+/* Publication list styling */
+.pub-list li {
+  padding: 10px 14px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  transition: background .2s ease, transform .2s ease;
+}
+.pub-list li:hover {
+  background: rgba(197,55,55,.04);
+  transform: translateX(4px);
+}
+.pub-list a {
+  font-weight: 600;
+  font-size: .9em;
+  margin-left: 2px;
+}
+
+/* Award highlight */
+.award-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: #fff;
+  font-size: .8em;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* Styled list for services / teaching / lab */
+.styled-list li {
+  padding: 6px 10px;
+  margin-bottom: 2px;
+  border-radius: 4px;
+  transition: background .2s ease, transform .2s ease;
+}
+.styled-list li:hover {
+  background: rgba(30,144,255,.05);
+  transform: translateX(3px);
+}
+
+/* Honors list styling */
+.honors-list li {
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  transition: background .2s ease, transform .2s ease;
+  border-left: 3px solid transparent;
+}
+.honors-list li:hover {
+  background: rgba(197,55,55,.05);
+  border-left-color: rgb(197,55,55);
+  transform: translateX(4px);
+}
