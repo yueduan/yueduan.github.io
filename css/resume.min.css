@@ -34,3 +34,252 @@
   flex: 0 0 auto;
   display: inline-block;
 }
+
+/* ===== Fancy enhancements ===== */
+
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+section.resume-section { animation: fadeInUp .6s ease-out both; }
+
+/* Sidebar gradient & glow on profile image */
+@media (min-width:992px) {
+  #sideNav {
+    background: linear-gradient(160deg, rgb(197,55,55) 0%, rgb(140,30,30) 100%) !important;
+  }
+  #sideNav .navbar-brand .img-profile {
+    border: .4rem solid rgba(255,255,255,.35);
+    box-shadow: 0 0 20px rgba(0,0,0,.25);
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  #sideNav .navbar-brand .img-profile:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 28px rgba(0,0,0,.35);
+  }
+}
+
+/* Nav link hover underline effect */
+#sideNav .navbar-nav .nav-item .nav-link {
+  position: relative;
+  transition: color .25s ease, letter-spacing .25s ease;
+}
+#sideNav .navbar-nav .nav-item .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  width: 0; height: 2px;
+  background: rgba(255,255,255,.7);
+  transition: width .25s ease, left .25s ease;
+}
+#sideNav .navbar-nav .nav-item .nav-link:hover::after {
+  width: 60%; left: 20%;
+}
+#sideNav .navbar-nav .nav-item .nav-link:hover {
+  letter-spacing: .5px;
+}
+
+/* Smooth link transitions everywhere */
+a { transition: color .2s ease; }
+
+/* Better section dividers */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, rgb(197,55,55) 0%, transparent 100%);
+  margin: 2rem 0;
+}
+
+/* Section label badges */
+.section-label {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.section-label-red    { background: rgb(197,55,55); }
+.section-label-blue   { background: #1e90ff; }
+.section-label-orange { background: #e08a2e; }
+
+/* News items styling */
+.news-list {
+  list-style: none;
+  padding-left: 0;
+  line-height: 1.9;
+}
+.news-list b {
+  color: rgb(197,55,55);
+  font-size: .92em;
+}
+
+/* Sponsor logos polish */
+.sponsors-line img {
+  height: 55px;
+  width: auto;
+  filter: grayscale(30%);
+  opacity: .85;
+  transition: filter .3s ease, opacity .3s ease, transform .3s ease;
+}
+.sponsors-line img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+/* Subtle body background */
+body {
+  background: #fafafa;
+}
+
+/* Additional section label colors */
+.section-label-green  { background: #2e8b57; }
+.section-label-purple { background: #7b5ea7; }
+.section-label-teal   { background: #2a9d8f; }
+
+/* Publication list styling */
+.pub-list li {
+  padding: 10px 14px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  transition: background .2s ease, transform .2s ease;
+}
+.pub-list li:hover {
+  background: rgba(197,55,55,.04);
+  transform: translateX(4px);
+}
+.pub-list a {
+  font-weight: 600;
+  font-size: .9em;
+  margin-left: 2px;
+}
+
+/* Award highlight */
+.award-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: #fff;
+  font-size: .8em;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* Styled list for services / teaching / lab */
+.styled-list li {
+  padding: 6px 10px;
+  margin-bottom: 2px;
+  border-radius: 4px;
+  transition: background .2s ease, transform .2s ease;
+}
+.styled-list li:hover {
+  background: rgba(30,144,255,.05);
+  transform: translateX(3px);
+}
+
+/* Honors list styling */
+.honors-list li {
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  transition: background .2s ease, transform .2s ease;
+  border-left: 3px solid transparent;
+}
+.honors-list li:hover {
+  background: rgba(197,55,55,.05);
+  border-left-color: rgb(197,55,55);
+  transform: translateX(4px);
+}
+
+/* ===== Mobile optimizations ===== */
+@media (max-width: 767px) {
+  /* Scale down headings to fit small screens */
+  h1 {
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  .subheading {
+    font-size: 1.1rem;
+  }
+
+  /* Reduce section padding */
+  section.resume-section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    min-height: auto !important;
+  }
+
+  /* Tighter content padding */
+  .p-3 {
+    padding: 1rem !important;
+  }
+
+  /* Sponsor logos: wrap and center instead of horizontal scroll */
+  .sponsors-line {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  .sponsors-line img {
+    height: 40px;
+  }
+
+  /* Publication list: reduce left padding from fa-ul icons */
+  .fa-ul {
+    margin-left: 1.5em;
+  }
+  .pub-list li,
+  .styled-list li,
+  .honors-list li {
+    padding: 6px 4px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Prevent long links/URLs from overflowing */
+  a {
+    word-break: break-word;
+  }
+
+  /* Remove excessive right margin on news */
+  .mr-5 {
+    margin-right: 0.5rem !important;
+  }
+
+  /* Better tap targets for nav links */
+  #sideNav .navbar-nav .nav-item .nav-link {
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  /* Section labels: slightly smaller on mobile */
+  .section-label {
+    font-size: 0.85rem;
+    padding: 3px 10px;
+  }
+
+  /* Award badge: prevent inline overflow */
+  .award-badge {
+    display: block;
+    margin-left: 0;
+    margin-top: 4px;
+    width: fit-content;
+  }
+
+  /* Reduce hr margin */
+  hr {
+    margin: 1.2rem 0;
+  }
+}
