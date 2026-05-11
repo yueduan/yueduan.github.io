@@ -200,6 +200,23 @@ body {
   transform: translateX(4px);
 }
 
+/* Font Awesome fallback: vendor/font-awesome/ is not deployed, so .fa-ul's
+   list-style:none and .fa-li positioning never load. Suppress default list
+   bullets here so they don't appear in fa-ul lists (especially noticeable on
+   mobile when block-level content like .award-badge wraps to its own line). */
+.fa-ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 2.14285714em;
+}
+.fa-li {
+  position: absolute;
+  left: -2.14285714em;
+  width: 2.14285714em;
+  top: 0.14285714em;
+  text-align: center;
+}
+
 /* ===== Mobile optimizations ===== */
 @media (max-width: 767px) {
   /* Scale down headings to fit small screens */
