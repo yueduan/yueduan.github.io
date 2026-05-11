@@ -25,7 +25,7 @@ No build system or package manager. To preview locally, open any `.html` file in
 - **`css/resume.min.css`** — the live stylesheet with all custom styles (colors, layout, section labels, sponsor logos, responsive tweaks). Primary brand color is `rgb(197, 55, 55)` (red). See CSS note above
 - **`course_slides/`** — slide decks for courses
 - **`js/resume.js`** — minimal jQuery for smooth scrolling and scrollspy
-- **`vendor/`** — vendored third-party libraries (Bootstrap, Font Awesome, devicons, jQuery easing, simple-line-icons). Do not modify these
+- **`vendor/`** — vendored third-party libraries. Only `vendor/bootstrap/` and `vendor/devicons/` are actually committed and deployed. The HTML pages also reference `vendor/font-awesome/`, `vendor/jquery-easing/`, and `vendor/simple-line-icons/`, but those directories do not exist in the repo and 404 on the live site. The site has been running without them; visible side effects include missing `fa-check` icons and default `<ul>` disc bullets reappearing on `fa-ul` lists (mitigated in `resume.min.css` with a fallback that sets `list-style: none` and positions `.fa-li`). Do not modify the vendored directories that do exist
 - **`img/`** — profile photo and sponsor logos (`img/logos/`)
 - **`paper/`** — PDF papers linked from pub.html
 
@@ -34,5 +34,5 @@ No build system or package manager. To preview locally, open any `.html` file in
 - Every HTML page duplicates the full navbar and head/script boilerplate. When adding nav items or changing shared resources, update **all** HTML pages.
 - Section labels use `<span class="section-label section-label-{color}">` with color variants defined in `resume.min.css` (red, blue, green, purple, orange, teal).
 - News items on index.html are reverse-chronological. Older items are hidden behind a "More" button using inline JS toggle.
-- Publication entries in `pub.html` follow this pattern: `<li>` with `<i class="fa-li fa fa-check"></i>`, venue in `<font color=#0096FF><b>[VENUE'YY]</b></font>`, the PI's name in `<b>Yue Duan</b>`, advised students underlined with `<u>`, and optional `[Paper]`/`[Source Code]` links. Entries are grouped under section labels: Journal, Conference, Workshop/Poster.
+- Publication entries in `pub.html` follow this pattern: `<li>` with `<i class="fa-li fa fa-check"></i>`, venue in `<font color=#0096FF><b>[VENUE'YY]</b></font>`, the PI's name in `<b>Yue Duan</b>`, advised students underlined with `<u>`, and optional `[Paper]`/`[Source Code]` links. Entries are grouped under three section labels: Journal Paper, Conference Paper, and Poster. Workshop papers go under **Conference Paper**, not Poster.
 - Course material pages under `course_materials/` have their own navbar copies. **Known issue:** these pages reference `vendor/` and `css/` with bare relative paths (no `../../`), but those directories don't exist inside the course subfolders — asset loading may be broken for these pages.
